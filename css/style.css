@@ -319,34 +319,36 @@ header {
     cursor: pointer;
 }
 
-.save-button {
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.save-button,
+.cancel-button {
     background-color: #FFD700;
     border: 2px solid #000000;
     padding: 10px 20px;
     cursor: pointer;
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
-    border-radius: 25px;
+    border-radius: 4px; /* Rectangular shape */
     transition: background-color 0.3s ease;
 }
 
-.save-button:hover {
+.save-button:hover,
+.cancel-button:hover {
     background-color: #FFC700;
 }
 
-.save-button:active {
+.save-button:active,
+.cancel-button:active {
     background-color: #FFB700;
 }
 
 .cancel-button {
     background-color: #FFFFFF;
-    border: 2px solid #000000;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-family: 'Raleway', sans-serif;
-    font-weight: bold;
-    border-radius: 25px;
-    transition: background-color 0.3s ease;
 }
 
 .cancel-button:hover {
@@ -357,23 +359,25 @@ header {
     background-color: #BBBBBB;
 }
 
-.dark-mode .save-button {
+.dark-mode .save-button,
+.dark-mode .cancel-button {
     background-color: #FFD700;
     border: 2px solid #FFFFFF;
     color: #000000;
 }
 
-.dark-mode .save-button:hover {
+.dark-mode .save-button:hover,
+.dark-mode .cancel-button:hover {
     background-color: #FFC700;
 }
 
-.dark-mode .save-button:active {
+.dark-mode .save-button:active,
+.dark-mode .cancel-button:active {
     background-color: #FFB700;
 }
 
 .dark-mode .cancel-button {
     background-color: #000000;
-    border: 2px solid #FFFFFF;
     color: #FFFFFF;
 }
 
@@ -383,6 +387,15 @@ header {
 
 .dark-mode .cancel-button:active {
     background-color: #444444;
+}
+
+.large-input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    font-size: 16px;
 }
 
 .yellow-button {

@@ -40,7 +40,11 @@
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h2>Edit Task</h2>
-            <input type="text" id="edit-task-input" placeholder="Edit task description">
+            <input type="text" id="edit-task-input" placeholder="Edit task description" class="large-input">
+            <div class="modal-buttons">
+                <button id="save-task" class="save-button">Save</button>
+                <button id="cancel-task" class="cancel-button">Cancel</button>
+            </div>
         </div>
     </div>
 
@@ -49,15 +53,5 @@
     <script src="js/filter.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/script.js"></script>
-    <!-- Edit Task Modal -->
-    <div id="edit-task-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2>Edit Task</h2>
-            <input type="text" id="edit-task-input" placeholder="Edit task description">
-            <button id="save-task" class="save-button yellow-button">Save</button>
-            <button id="cancel-task" class="close-button white-button">Cancel</button>
-        </div>
-    </div>
 </body>
 </html>

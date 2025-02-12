@@ -13,8 +13,9 @@ function getTasks() {
     return JSON.parse(localStorage.getItem('tasks')) || [];
 }
 
-function getTask(taskId) {
-    return getTasks().find(task => task.id == taskId);
+function getTask(id) {
+    const numericId = Number(id);
+    return getTasks().find(task => task.id === numericId);
 }
 
 function removeTask(taskId) {
