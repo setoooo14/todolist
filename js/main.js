@@ -21,9 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     taskList.addEventListener('click', (event) => {
         if (event.target.classList.contains('delete-task')) {
-            deleteTask(event.target.parentElement);
+            deleteTask(event.target.closest('li'));
         } else if (event.target.classList.contains('toggle-complete')) {
-            toggleTaskComplete(event.target.parentElement);
+            toggleTaskComplete(event.target.closest('li'));
         }
     });
 
@@ -50,8 +50,10 @@ function renderTask(task) {
     taskItem.dataset.id = task.id;
     taskItem.innerHTML = `
         <span class="task-text ${task.completed ? 'completed' : ''}">${task.text}</span>
-        <button class="toggle-complete">${task.completed ? 'Undo' : 'Complete'}</button>
-        <button class="delete-task">Delete</button>
+        <div class="task-buttons">
+            <button class="toggle-complete">${task.completed ? 'Undo' : 'Complete'}</button>
+            <button class="delete-task">Delete</button>
+        </div>
     `;
     taskList.appendChild(taskItem);
 }

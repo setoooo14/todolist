@@ -8,10 +8,21 @@ body {
 
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    position: relative;
     margin-bottom: 20px;
     font-family: 'Raleway', sans-serif;
+}
+
+#dark-mode-toggle {
+    position: absolute;
+    right: 20px;
+    font-size: 24px;
+    padding: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 #task-input {
@@ -31,10 +42,11 @@ header {
 
 #task-input button {
     background-color: #FFD700;
-    border: none;
+    border: 2px solid #000000;
     padding: 15px 25px;
     cursor: pointer;
     font-family: 'Raleway', sans-serif;
+    font-weight: bold;
     border-radius: 25px;
     transition: background-color 0.3s ease;
 }
@@ -89,10 +101,11 @@ header {
 
 #task-filter button {
     background-color: #FFD700;
-    border: none;
+    border: 2px solid #000000;
     padding: 10px 20px;
     cursor: pointer;
     font-family: 'Raleway', sans-serif;
+    font-weight: bold;
     border-radius: 25px;
     transition: background-color 0.3s ease;
 }
@@ -126,22 +139,66 @@ header {
     transition: width 0.3s ease;
 }
 
+.task-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.task-buttons button {
+    padding: 10px 15px;
+    border: 2px solid #000000;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.task-buttons .toggle-complete {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.task-buttons .toggle-complete:hover {
+    background-color: #FFD700;
+}
+
+.task-buttons .toggle-complete:active {
+    background-color: #FFC700;
+}
+
+.task-buttons .delete-task {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.task-buttons .delete-task:hover {
+    background-color: #FFD700;
+}
+
+.task-buttons .delete-task:active {
+    background-color: #FFC700;
+}
+
 .dark-mode {
     background-color: #333333;
-    color: #f8f8f8;
+    color: #FFFFFF;
 }
 
 .dark-mode #task-input input {
     border: 1px solid #555555;
+    color: #FFFFFF;
 }
 
 .dark-mode #task-list li {
     background-color: #444444;
     border: 1px solid #555555;
+    color: #FFFFFF;
 }
 
 .dark-mode #task-filter button {
     background-color: #666666;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
 }
 
 .dark-mode #task-filter button:hover {
@@ -158,4 +215,39 @@ header {
 
 .dark-mode #progress-bar {
     background-color: #FFD700;
+}
+
+.dark-mode .task-buttons button {
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+}
+
+.dark-mode .task-buttons .toggle-complete {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.dark-mode .task-buttons .toggle-complete:hover {
+    background-color: #FFD700;
+    color: #000000;
+}
+
+.dark-mode .task-buttons .toggle-complete:active {
+    background-color: #FFC700;
+    color: #000000;
+}
+
+.dark-mode .task-buttons .delete-task {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.dark-mode .task-buttons .delete-task:hover {
+    background-color: #FFD700;
+    color: #000000;
+}
+
+.dark-mode .task-buttons .delete-task:active {
+    background-color: #FFC700;
+    color: #000000;
 }
