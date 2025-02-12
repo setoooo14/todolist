@@ -13,11 +13,11 @@
 <body>
     <header>
         <h1>ToDo List</h1>
-        <button id="dark-mode-toggle">Toggle Dark Mode</button>
+        <button id="dark-mode-toggle">🌓</button>
     </header>
     <main>
         <section id="task-input">
-            <input type="text" id="new-task" placeholder="Add a new task">
+            <input type="text" id="new-task" placeholder="What do you want to do?">
             <button id="add-task">Add Task</button>
         </section>
         <section id="task-list">
@@ -28,6 +28,10 @@
             <button id="filter-completed">Completed</button>
             <button id="filter-pending">Pending</button>
         </section>
+        <div id="task-counter">0 tasks completed out of 0</div>
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
     </main>
     <script src="js/main.js"></script>
     <script src="js/storage.js"></script>
