@@ -4,6 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskList = document.getElementById('tasks');
     const taskCounter = document.getElementById('task-counter');
     const progressBar = document.getElementById('progress-bar');
+    const editTaskModal = document.getElementById('edit-task-modal');
+    const editTaskInput = document.getElementById('edit-task-input');
+    const updateTaskButton = document.getElementById('update-task');
+    const closeButton = document.querySelector('.close-button');
+    const saveButton = document.getElementById('save-task');
+    const cancelButton = document.getElementById('cancel-task');
+    let currentEditTaskId = null;
 
     addTaskButton.addEventListener('click', () => {
         const taskText = newTaskInput.value.trim();
@@ -24,6 +31,38 @@ document.addEventListener('DOMContentLoaded', () => {
             deleteTask(event.target.closest('li'));
         } else if (event.target.classList.contains('toggle-complete')) {
             toggleTaskComplete(event.target.closest('li'));
+        } else if (event.target.classList.contains('edit-task')) {
+            openEditTaskModal(event.target.closest('li'));
+        }
+    });
+
+    closeButton.addEventListener('click', () => {
+        editTaskModal.style.display = 'none';
+    });
+
+    updateTaskButton.addEventListener('click', () => {
+        const updatedText = editTaskInput.value.trim();
+        if (updatedText && currentEditTaskId) {
+            updateTask(currentEditTaskId, updatedText);
+            editTaskModal.style.display = 'none';
+        }
+    });
+
+    saveButton.addEventListener('click', () => {
+        const updatedText = editTaskInput.value.trim();
+        if (updatedText && currentEditTaskId) {
+            updateTask(currentEditTaskId, updatedText);
+            editTaskModal.style.display = 'none';
+        }
+    });
+
+    cancelButton.addEventListener('click', () => {
+        editTaskModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === editTaskModal) {
+            editTaskModal.style.display = 'none';
         }
     });
 
@@ -52,6 +91,7 @@ function renderTask(task) {
         <span class="task-text ${task.completed ? 'completed' : ''}">${task.text}</span>
         <div class="task-buttons">
             <button class="toggle-complete">${task.completed ? 'Undo' : 'Complete'}</button>
+            <button class="edit-task">Edit</button>
             <button class="delete-task">Delete</button>
         </div>
     `;
@@ -76,6 +116,22 @@ function toggleTaskComplete(taskElement) {
     taskElement.querySelector('.toggle-complete').textContent = task.completed ? 'Undo' : 'Complete';
     updateTaskCounter();
     updateProgressBar();
+}
+
+function openEditTaskModal(taskElement) {
+    const taskId = taskElement.dataset.id;
+    const task = getTask(taskId);
+    currentEditTaskId = taskId;
+    editTaskInput.value = task.text;
+    editTaskModal.style.display = 'block';
+}
+
+function updateTask(taskId, updatedText) {
+    const task = getTask(taskId);
+    task.text = updatedText;
+    saveTask(task);
+    const taskElement = document.querySelector(`li[data-id='${taskId}'] .task-text`);
+    taskElement.textContent = updatedText;
 }
 
 function updateTaskCounter() {

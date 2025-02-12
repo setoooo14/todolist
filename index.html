@@ -34,6 +34,26 @@
             <div id="progress-bar"></div>
         </div>
     </main>
+
+    <!-- Edit Task Modal -->
+    <div id="edit-task-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Edit Task</h2>
+            <table>
+                <tr>
+                    <td><input type="text" id="edit-task-input" placeholder="Edit task description"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="update-task" class="save-button">Save</button>
+                        <button class="close-button cancel-button">Cancel</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/filter.js"></script>
