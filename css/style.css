@@ -384,3 +384,13 @@ header {
 .dark-mode .cancel-button:active {
     background-color: #444444;
 }
+
+.yellow-button {
+    background-color: yellow;
+    color: black;
+}
+
+.white-button {
+    background-color: white;
+    color: black;
+}

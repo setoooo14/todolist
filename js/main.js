@@ -1,16 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+    loadTasks();
+    updateTaskCounter();
+    updateProgressBar();
     const addTaskButton = document.getElementById('add-task');
     const newTaskInput = document.getElementById('new-task');
     const taskList = document.getElementById('tasks');
     const taskCounter = document.getElementById('task-counter');
     const progressBar = document.getElementById('progress-bar');
-    const editTaskModal = document.getElementById('edit-task-modal');
-    const editTaskInput = document.getElementById('edit-task-input');
-    const updateTaskButton = document.getElementById('update-task');
-    const closeButton = document.querySelector('.close-button');
-    const saveButton = document.getElementById('save-task');
-    const cancelButton = document.getElementById('cancel-task');
-    let currentEditTaskId = null;
 
     addTaskButton.addEventListener('click', () => {
         const taskText = newTaskInput.value.trim();
@@ -20,32 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    newTaskInput.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-            addTaskButton.click();
-        }
-    });
+    const editTaskModal = document.getElementById('edit-task-modal');
+    const editTaskInput = document.getElementById('edit-task-input');
+    const saveButton = document.getElementById('save-task');
+    const cancelButton = document.getElementById('cancel-task');
+    let currentEditTaskId = null;
 
     taskList.addEventListener('click', (event) => {
-        if (event.target.classList.contains('delete-task')) {
-            deleteTask(event.target.closest('li'));
-        } else if (event.target.classList.contains('toggle-complete')) {
-            toggleTaskComplete(event.target.closest('li'));
-        } else if (event.target.classList.contains('edit-task')) {
+        if (event.target.classList.contains('edit-task')) {
             openEditTaskModal(event.target.closest('li'));
         }
     });
 
-    closeButton.addEventListener('click', () => {
-        editTaskModal.style.display = 'none';
-    });
-
-    updateTaskButton.addEventListener('click', () => {
-        const updatedText = editTaskInput.value.trim();
-        if (updatedText && currentEditTaskId) {
-            updateTask(currentEditTaskId, updatedText);
+    document.querySelectorAll('.close-button').forEach(button => {
+        button.addEventListener('click', () => {
             editTaskModal.style.display = 'none';
-        }
+        });
     });
 
     saveButton.addEventListener('click', () => {
@@ -65,6 +51,37 @@ document.addEventListener('DOMContentLoaded', () => {
             editTaskModal.style.display = 'none';
         }
     });
+
+    function openEditTaskModal(taskElement) {
+        const taskId = taskElement.dataset.id;
+        const task = getTask(taskId);
+        currentEditTaskId = taskId;
+        editTaskInput.value = task.text;
+        editTaskModal.style.display = 'block';
+    }
+
+    function updateTask(taskId, updatedText) {
+        const task = getTask(taskId);
+        task.text = updatedText;
+        saveTask(task);
+        const taskElement = document.querySelector(`li[data-id='${taskId}'] .task-text`);
+        taskElement.textContent = updatedText;
+    }
+
+    newTaskInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            addTaskButton.click();
+        }
+    });
+
+    taskList.addEventListener('click', (event) => {
+        if (event.target.classList.contains('delete-task')) {
+            deleteTask(event.target.closest('li'));
+        } else if (event.target.classList.contains('toggle-complete')) {
+            toggleTaskComplete(event.target.closest('li'));
+        }
+    });
+
 
     loadTasks();
     updateTaskCounter();
@@ -118,21 +135,6 @@ function toggleTaskComplete(taskElement) {
     updateProgressBar();
 }
 
-function openEditTaskModal(taskElement) {
-    const taskId = taskElement.dataset.id;
-    const task = getTask(taskId);
-    currentEditTaskId = taskId;
-    editTaskInput.value = task.text;
-    editTaskModal.style.display = 'block';
-}
-
-function updateTask(taskId, updatedText) {
-    const task = getTask(taskId);
-    task.text = updatedText;
-    saveTask(task);
-    const taskElement = document.querySelector(`li[data-id='${taskId}'] .task-text`);
-    taskElement.textContent = updatedText;
-}
 
 function updateTaskCounter() {
     const tasks = getTasks();
